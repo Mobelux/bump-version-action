@@ -34,6 +34,8 @@ outputs:
     release-type: 'minor'
 ```
 
+See this repo's [release workflow](.github/workflows/release.yml) for a complete example.
+
 ## Acknowledgments
 
 Uses [semver-tool](https://github.com/fsaintjacques/semver-tool)
