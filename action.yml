@@ -1,8 +1,9 @@
 name: Bump Version
+author: Mobelux
 description: Bumps a given version number.
 
 inputs:
-  current-version:
+  version:
     description: The current semantic version number.
     required: true
   release-type:
@@ -21,4 +22,8 @@ runs:
       id: bump
       shell: bash
       run: |
-        echo "new-version=$( ${{ github.action_path }}/semver.sh bump ${{ inputs.release-type }} ${{ inputs.current-version }} )" >> $GITHUB_OUTPUT
+        echo "new-version=$( ${{ github.action_path }}/semver.sh bump ${{ inputs.release-type }} ${{ inputs.version }} )" >> $GITHUB_OUTPUT
+
+branding:
+  icon: 'triangle'
+  color: 'orange'
