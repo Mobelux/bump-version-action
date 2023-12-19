@@ -1,0 +1,37 @@
+name: Bump Version
+author: Mobelux
+description: Bumps a given version number.
+
+inputs:
+  version:
+    description: The current semantic version number.
+    required: true
+  release-type:
+    description: Type of release. Must be one of `patch` | `minor` | `major`.
+    required: true
+
+outputs:
+  version:
+    description: The new version number.
+    value: ${{ steps.bump.outputs.new-version }}
+  major-version:
+    description: The major version number.
+    value: ${{ steps.major-version.outputs.major-version }}
+
+runs:
+  using: composite
+  steps:
+    - name: Bump Version
+      id: bump
+      shell: bash
+      run: |
+        echo "new-version=$( ${{ github.action_path }}/semver.sh bump ${{ inputs.release-type }} ${{ inputs.version }} )" >> $GITHUB_OUTPUT
+    - name: Get Major Version
+      id: major-version
+      shell: bash
+      run: |
+        echo "major-version=$( ${{ github.action_path }}/semver.sh get major ${{ steps.bump.outputs.new-version }} )" >> $GITHUB_OUTPUT
+
+branding:
+  icon: 'triangle'
+  color: 'orange'
