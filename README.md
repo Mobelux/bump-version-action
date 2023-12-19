@@ -20,6 +20,8 @@ inputs:
 outputs:
   version:
     description: The new version number.
+  major-version:
+    description: The major version number.
 ```
 
 ## Example Usage

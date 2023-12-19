@@ -14,6 +14,9 @@ outputs:
   version:
     description: The new version number.
     value: ${{ steps.bump.outputs.new-version }}
+  major-version:
+    description: The major version number.
+    value: ${{ steps.major-version.outputs.major-version }}
 
 runs:
   using: composite
@@ -23,6 +26,11 @@ runs:
       shell: bash
       run: |
         echo "new-version=$( ${{ github.action_path }}/semver.sh bump ${{ inputs.release-type }} ${{ inputs.version }} )" >> $GITHUB_OUTPUT
+    - name: Get Major Version
+      id: major-version
+      shell: bash
+      run: |
+        echo "major-version=$( ${{ github.action_path }}/semver.sh get major ${{ steps.bump.outputs.new-version }} )" >> $GITHUB_OUTPUT
 
 branding:
   icon: 'triangle'
