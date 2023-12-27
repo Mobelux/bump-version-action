@@ -30,7 +30,7 @@ outputs:
 - uses: uses: Mobelux/bump-version-action@v1
   id: bump
   with:
-    version: `1.0.0'
+    version: '1.0.0'
     release-type: 'minor'
 ```
 
